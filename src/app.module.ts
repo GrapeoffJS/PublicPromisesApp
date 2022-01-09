@@ -10,7 +10,9 @@ import path from 'path';
 
 @Module({
     imports: [
-        ServeStaticModule.forRoot({ rootPath: path.join(__dirname, 'public') }),
+        ServeStaticModule.forRoot({
+            rootPath: path.join(__dirname, '..', 'public')
+        }),
         MongooseModule.forRoot(
             'mongodb+srv://admin:admin@promises.br8om.mongodb.net/Promises?retryWrites=true&w=majority'
         ),
