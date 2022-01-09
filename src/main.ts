@@ -7,21 +7,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
     app.enableCors();
-    app.use(
-        helmet({
-            contentSecurityPolicy: {
-                directives: {
-                    defaultSrc: [`'self'`],
-                    styleSrc: [`'self'`, `'unsafe-inline'`, 'cdn.jsdelivr.net'],
-                    scriptSrc: [
-                        `'self'`,
-                        'unsafe-inline',
-                        `cdnjs.cloudflare.com`
-                    ]
-                }
-            }
-        })
-    );
+    app.use(helmet());
 
     app.useGlobalPipes(
         new ValidationPipe({
@@ -29,6 +15,6 @@ async function bootstrap() {
         })
     );
 
-    await app.listen(3000);
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
