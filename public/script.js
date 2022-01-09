@@ -11,17 +11,17 @@ $('#send').on('click', event => {
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:3000/api',
+        url: '/api',
         data: { author, text }
     });
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:3000/api',
+        url: '/api',
         success(response) {
             $('#promises').children('.tr').remove();
 
-            for (promise of response) {
+            for (const promise of response) {
                 $('#promises').append(`
                     <tr class="tr">
                         <th scope="row">${promise.author}</th>
@@ -39,9 +39,9 @@ $('#send').on('click', event => {
 $(document).on('DOMContentLoaded', () => {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:3000/api',
+        url: '/api',
         success(response) {
-            for (promise of response) {
+            for (const promise of response) {
                 $('#promises').append(`
                     <tr class="tr">
                         <th scope="row">${promise.author}</th>
